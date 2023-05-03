@@ -20,6 +20,18 @@ var main = {
             content: $('#content').val()
         };
 
+        if (data.title == "" || data.title == null) {
+            alert("제목을 입력하세요.");
+            uid.focus();
+            return false;
+          };
+
+          if (data.author == "" || data.author == null) {
+              alert("작성자를 입력하세요.");
+              uid.focus();
+              return false;
+            };
+
         $.ajax({
             type: 'POST',
             url: '/api/v1/posts',
@@ -30,9 +42,10 @@ var main = {
             alert('글이 등록되었습니다.');
             window.location.href = '/';
         }).fail(function (error) {
-            alert(JSON.stringify(error));
+            alert('권한이 없습니다.');
         });
     },
+
         update : function () {
             var data = {
                 title: $('#title').val(),
@@ -40,6 +53,12 @@ var main = {
             };
 
             var id = $('#id').val();
+
+            if (data.title == "" || data.title == null) {
+                alert("제목을 입력하세요.");
+                uid.focus();
+                return false;
+              };
 
             $.ajax({
                 type: 'PUT',
@@ -51,25 +70,25 @@ var main = {
                 alert('글이 수정되었습니다.');
                 window.location.href = '/';
             }).fail(function (error) {
-                alert(JSON.stringify(error));
+                alert('권한이 없습니다.');
             });
         },
 
-            delete : function () {
-                var id = $('#id').val();
+        delete : function () {
+            var id = $('#id').val();
 
-                $.ajax({
-                    type: 'DELETE',
-                    url: '/api/v1/posts/'+id,
-                    dataType: 'json',
-                    contentType:'application/json; charset=utf-8'
-                }).done(function() {
-                    alert('글이 삭제되었습니다.');
-                    window.location.href = '/';
-                }).fail(function (error) {
-                    alert(JSON.stringify(error));
-                });
-            }
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/v1/posts/'+id,
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8'
+            }).done(function() {
+                alert('글이 삭제되었습니다.');
+                window.location.href = '/';
+            }).fail(function (error) {
+                alert('권한이 없습니다.');
+            });
+        }
 };
 
 main.init();
