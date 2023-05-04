@@ -2,6 +2,7 @@ package com.endqh.board.springboot.config.auth;
 
 import com.endqh.board.springboot.domain.user.Role;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,15 +20,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
-                .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile", "/favicon.ico").permitAll()
+                .antMatchers("/notice").permitAll()
+                .antMatchers("/posts/view/**").permitAll()
+//                .antMatchers("/notice/view/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                .antMatchers("/notice/view/**").permitAll()
+                .antMatchers("/notice/update/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                .antMatchers(HttpMethod.GET,"/api/v1/notice").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/v1/notice/**").hasRole(Role.ADMIN.name())
+                .antMatchers(HttpMethod.PUT,"/api/v1/notice/**").hasRole(Role.ADMIN.name())
+                .antMatchers(HttpMethod.DELETE,"/api/v1/notice/**").hasRole(Role.ADMIN.name())
+                .antMatchers(HttpMethod.GET,"/api/v1/notice/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                .antMatchers("/api/v1/posts/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                .antMatchers(HttpMethod.GET,"/api/v1/log/**").permitAll()
+
                 .anyRequest().authenticated()
+
                 .and()
-                .logout()
-                .logoutSuccessUrl("/")
+                .oauth2Login().loginPage("/login")
+
                 .and()
-                .oauth2Login()
-                .userInfoEndpoint()
-                .userService(customOAuth2UserService);
+                .logout().logoutSuccessUrl("/")
+
+                .and()
+                .oauth2Login().userInfoEndpoint().userService(customOAuth2UserService);
     }
 }

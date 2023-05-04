@@ -33,7 +33,7 @@ public class User extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private Role role; // Role: 직접 만드는 클래스
 
     @Builder
     public User(String name, String email, String picture, Role role) {

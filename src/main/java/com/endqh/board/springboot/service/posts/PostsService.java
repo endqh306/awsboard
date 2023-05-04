@@ -7,6 +7,9 @@ import com.endqh.board.springboot.web.dto.PostsResponseDto;
 import com.endqh.board.springboot.web.dto.PostsSaveRequestDto;
 import com.endqh.board.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,40 +23,58 @@ public class PostsService {
     private final PostsRepository postsRepository;
 
     @Transactional
-    public Long save(PostsSaveRequestDto requestDto) {
-        return postsRepository.save(requestDto.toEntity()).getId();
+    public Long save(PostsSaveRequestDto requestDTO) {
+        return postsRepository.save(requestDTO.toEntity())
+                .getId();
     }
 
     @Transactional
-    public Long update(Long id, PostsUpdateRequestDto requestDto) {
+    public Long update(Long id, PostsUpdateRequestDto requestDTO) {
         Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
-
-        posts.update(requestDto.getTitle(), requestDto.getContent());
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다. id=" + id));
+        posts.update(requestDTO.getTitle(), requestDTO.getContent());
 
         return id;
     }
 
-    @Transactional
-    public void delete (Long id) {
-        Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
-
-        postsRepository.delete(posts);
-    }
-
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다. id=" + id));
 
         return new PostsResponseDto(entity);
     }
 
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc() {
-        return postsRepository.findAllDesc().stream()
+        return postsRepository.findAllDesc().stream().map(PostsListResponseDto::new).collect(Collectors.toList());
+    }
+
+    // 페이지로 가져오기
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllByOrderByIdDesc(Integer pageNum, Integer postsPerPage) {
+        Page<Posts> page = postsRepository.findAll(
+                // PageRequest의 page는 0부터 시작
+                PageRequest.of(pageNum - 1, postsPerPage,
+                        Sort.by(Sort.Direction.DESC, "id")
+                ));
+        return page.stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    public Long count() {
+        return postsRepository.count();
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts post = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다. id=" + id));
+
+        postsRepository.delete(post);
+
+    }
+
+
+
 
 }
