@@ -18,11 +18,12 @@ apply plugin: 'io.spring.dependency-management'
 
 group 'com.example.board'
 version '1.0-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
