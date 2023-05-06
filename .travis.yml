@@ -15,7 +15,7 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r awsboard
+  - zip -r awsboard *
   - mkdir -p deploy # zip에 포함시킬 파일들을 담을 디렉토리 생성
   - mv awsboard.zip deploy/awsboard.zip # deploy로 zip파일 이동
 
