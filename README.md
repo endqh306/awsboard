@@ -66,6 +66,23 @@
 ## :factory: 시스템 구조
 <img alt="시스템 구조" src="https://user-images.githubusercontent.com/129237420/236687885-a1d98f86-d0e0-45e1-be60-8c7d1b3f3c4b.png" width="80%" height="80%">
 
+## :factory: 동작 내용(스크린샷)
+![](https://user-images.githubusercontent.com/129237420/236688932-61ed3858-f92d-4efa-824b-e22d8cbdce20.JPG) 메인 화면, 페이징 처리
+
+![](https://user-images.githubusercontent.com/129237420/236689172-1bcf3f65-50b6-4fed-a6ff-80ded4e5199b.JPG) 구글 계정으로 로그인한 경우
+
+![](https://user-images.githubusercontent.com/129237420/236689025-ec8b6ff7-7799-457b-89a7-566c16274538.JPG) 글쓰기 화면
+
+![](https://user-images.githubusercontent.com/129237420/236689199-463f2e3c-2ccb-4a43-9429-b021a6cd61fb.JPG) 새로운 글 목록 출력
+
+![](https://user-images.githubusercontent.com/129237420/236689272-f2a72600-cb93-4e30-be9f-7272bb36a21d.JPG) 새로운 글 읽기 페이지, 내가 쓴 글인 경우 [수정], [삭제] 버튼 표시됨
+
+![](https://user-images.githubusercontent.com/129237420/236689308-312d017c-9c44-46bb-926e-bc3c5dbd2356.JPG) 내가 쓴 글이 아닌 경우, 글 읽기만 가능하고 수정, 삭제 버튼은 활성화되지 않음
+
+![](https://user-images.githubusercontent.com/129237420/236689334-4f5f8835-4e8b-4de4-b47f-ae88c6548395.JPG) 네이버로 로그인한 경우
+
+![](https://user-images.githubusercontent.com/129237420/236689356-df584d6a-0402-47e4-b666-91edaf9f0ef0.JPG) ROLE(역할)이 ADMIN(관리자)인 경우에만 작성할 수 있음
+
 
 
 
