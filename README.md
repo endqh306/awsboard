@@ -69,7 +69,7 @@
 ## :factory: 동작 내용(스크린샷)
 ![](https://user-images.githubusercontent.com/129237420/236688932-61ed3858-f92d-4efa-824b-e22d8cbdce20.JPG) 메인 화면, 페이징 처리
 
-![](https://user-images.githubusercontent.com/129237420/236689172-1bcf3f65-50b6-4fed-a6ff-80ded4e5199b.JPG) 구글 계정으로 로그인한 경우
+![](https://user-images.githubusercontent.com/129237420/236689923-20302494-97d5-4102-aa9e-cf221b4be5ec.JPG) 구글 계정으로 로그인한 경우
 
 ![](https://user-images.githubusercontent.com/129237420/236689025-ec8b6ff7-7799-457b-89a7-566c16274538.JPG) 글쓰기 화면
 
