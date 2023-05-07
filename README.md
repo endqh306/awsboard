@@ -60,7 +60,7 @@
 ## :clipboard: 성능 테스팅 도구
 * JUnit
 
-## :clipboard: ERD 설계
+## :factory: ERD 설계
 <img alt="ERD 설계" src="https://user-images.githubusercontent.com/129237420/236687985-53d5f6fb-765b-439b-862a-d1da6fafc4b9.JPG" width="80%" height="80%">
 
 ## :factory: 시스템 구조
