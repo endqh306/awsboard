@@ -36,7 +36,7 @@
 * Gradle
 
 #### Database
-* M
+* MySQL
 
 ### 프론트엔드
 * Thymeleaf
