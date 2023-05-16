@@ -36,7 +36,7 @@
 * Gradle
 
 #### Database
-* MariaDB
+* M
 
 ### 프론트엔드
 * Thymeleaf
